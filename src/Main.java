@@ -5,6 +5,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -18,59 +19,93 @@ public class Main {
         newContacts [2] = new Contact("Jeniffer","Lee","555555557");
         newContacts [3] = new Contact("Jacques","Boutte","555555558");
 
+        System.out.println(Arrays.toString(newContacts));
+        System.out.println(Arrays.toString(newContacts));
+
+
+//        Path dataFile = Paths.get(directory, filename);
+//        Path Files.write(Path dataFile, List<String> lines[, StandardOpenOption option])
+
+        System.out.println("Name | Phone number \n" +
+                "---------------");
+        List<String> contactList = new ArrayList<>();
         for (int i = 0; i < newContacts.length; i++) {
-            System.out.printf("Name       |  Phone number |\n"+
-                              "-----------|-----------|\n"+
-                              "%s   %s    | %s            |\n",
-                    newContacts[i].firstName, newContacts[i].lastName,newContacts[i].phoneNumber) ;
+
+         contactList.add(String.format("%s   %s | %s  \n",newContacts[i].firstName, newContacts[i].lastName,newContacts[i].phoneNumber));
+
         }
-//        System.out.println("Contact name: " + newContacts[i].firstName + " " + newContacts[i].lastName + " | " +"Phone Number: " + newContacts[i].phoneNumber);
 
-
-//        try{
-//            Files.write(
-//                    Paths.get(directory,filename),
-//                    Arrays.asList("test"),
-//                    StandardOpenOption.APPEND
-//            );
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        try{
+            Files.write(
+                    Paths.get(directory,filename),
+                    contactList,
+                    StandardOpenOption.APPEND
+            );
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
 
 
 
 
-// CREATED DATA DIRECTORY AND CONTACTS.TXT DIRECTORY FOR CONTACT LIST
+//      WHERE FOLDER WILL LIVE
         Path dataDirectory = Paths.get(directory);
+//      WHERE FILE WILL LIVE
         Path dataFile = Paths.get(directory, filename);
+//      CREATE DIRECTORY AND FILE
+        createDir(dataDirectory);
+        createAndCheckFile(dataFile);
+
+    }
 
 
+//      CREATED DATA DIRECTORY
+    private static void createDir(Path dataDirectory) {
 
         if(Files.notExists(dataDirectory)) {
             try {
                 Files.createDirectory(dataDirectory);
+                System.out.println("If succeed!");
             } catch (IOException errorHandler) {
                 System.out.println("Problems occurred when creating new DIRECTORY.");
                 errorHandler.printStackTrace();
+
             }
         }
+    }
+
+//      CREATED CONTACTS.TXT
+
+    private static void createAndCheckFile(Path dataFile) {
+
 
         if(Files.notExists(dataFile)) {
             try {
                 Files.createFile(dataFile);
+                System.out.println("This will create both Directory: data, and contacts inside of Directory \"in theory\".");
             } catch (IOException errorHandler) {
                 System.out.println("Problems occurred when creating new FILE.");
                 errorHandler.printStackTrace();
             }
+
         }
-
-        System.out.println("If succeed!");
-        System.out.println("This will create both Directory: data, and contacts inside of Directory \"in theory\".");
-
     }
 }
+
+
+//    public static void writeFile(Path aFile, List<String> aList){
+//        try {
+//            Files.write(aFile, aList);
+////            Files.write(aFile, aList, StandardOpenOption.APPEND);
+//        } catch (IOException e){
+//            System.out.println("Problems writing in the file");
+//            e.printStackTrace();
+//        }
+//    }
+
+
 
 /*
 The user interface for your application should include a main menu like the following,
