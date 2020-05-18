@@ -23,9 +23,6 @@ public class Main {
         System.out.println(Arrays.toString(newContacts));
 
 
-//        Path dataFile = Paths.get(directory, filename);
-//        Path Files.write(Path dataFile, List<String> lines[, StandardOpenOption option])
-
         System.out.println("Name | Phone number \n" +
                 "---------------");
         List<String> contactList = new ArrayList<>();
@@ -95,15 +92,16 @@ public class Main {
 }
 
 
-//    public static void writeFile(Path aFile, List<String> aList){
-//        try {
-//            Files.write(aFile, aList);
-////            Files.write(aFile, aList, StandardOpenOption.APPEND);
-//        } catch (IOException e){
-//            System.out.println("Problems writing in the file");
-//            e.printStackTrace();
-//        }
-//    }
+    public static void writeFile(Path aFile, List<String> aList) {
+        try {
+            Files.write(aFile, aList);
+//            Files.write(aFile, aList, StandardOpenOption.APPEND);
+        } catch (IOException e) {
+            System.out.println("Problems writing in the file");
+            e.printStackTrace();
+        }
+    }
+}
 
 
 
