@@ -6,14 +6,17 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        Scanner sc = new Scanner (System.in);
 
         String directory = "data";
         String filename = "contacts.txt";
 
         Contact[] newContacts = new Contact[4];
+        getContactList(sc,newContacts);
         newContacts [0] = new Contact("Sung","Lee","555555555");
         newContacts [1] = new Contact("DeLayne","LaBove","555555556");
         newContacts [2] = new Contact("Jeniffer","Lee","555555557");
@@ -42,9 +45,7 @@ public class Main {
             e.printStackTrace();
         }
 
-
-
-
+        addNewContact(sc);
 
 
 //      WHERE FOLDER WILL LIVE
@@ -89,19 +90,64 @@ public class Main {
 
         }
     }
-}
 
 
-    public static void writeFile(Path aFile, List<String> aList) {
+
+
+//        public static List<String> addNewContact(Path aFile, String newContact){
+//            List<String> newPerson = new ArrayList<>();
+//
+//            try {
+//                List<String> lines = Files.readAllLines(aFile);
+//                for (String line : lines) {
+//                    if(line.equals(find)){
+//                        newPerson.add(newContact);
+//                        continue;
+//                    }
+//                    newPerson.add(line);
+//                }
+//    //            Files.write(aFile, newContact, StandardOpenOption.APPEND); // Will add person to contact without removing.
+//            } catch (IOException e){
+//                System.out.println("Problems writing in the file");
+//                e.printStackTrace();
+//            }
+//        }
+    public static List<String> getContactList(Scanner sc, Contact[] newContacts) {
+
+        String userInput = sc.nextLine();
+        List<String> contactList = new ArrayList<>();
+        System.out.println("Do you want to see the contact list?");
+        if (userInput == "1"){
+            System.out.println("Name | Phone number \n" +
+                    "---------------");
+
+            for (int i = 0; i < newContacts.length; i++) {
+                contactList.add(String.format("%s   %s | %s  \n",newContacts[i].firstName, newContacts[i].lastName,newContacts[i].phoneNumber));
+            }
+        } else{
+            System.out.println("Good bye");
+
+        } return contactList;
+
+    }
+    public static void addNewContact(Scanner sc) {
         try {
-            Files.write(aFile, aList);
-//            Files.write(aFile, aList, StandardOpenOption.APPEND);
+            System.out.println("Add new contact");
+            String userInput = sc.nextLine();
+            System.out.println("userInput = " + userInput);
+            Files.write(
+                    Paths.get("data", "contacts.txt"),
+                    Arrays.asList(userInput), // list with one item 
+                    StandardOpenOption.APPEND
+            );
         } catch (IOException e) {
-            System.out.println("Problems writing in the file");
             e.printStackTrace();
         }
     }
+
 }
+
+
 
 
 
@@ -116,6 +162,7 @@ where the user will need to enter a number between 1 and 5:
 Enter an option (1, 2, 3, 4 or 5):
 
     // Build contacts list
+
     // todo method call APPLICATION
         runApplication();
 
@@ -125,7 +172,7 @@ Enter an option (1, 2, 3, 4 or 5):
     //todo do-while loop
     //todo if(userInput==#) continue/break;
             // todo method that returns a List of Contact objects in a table format #1
-            // todo method add contact -display name and phone number in a table #2
+            // method add contact -display name and phone number in a table #2
             // todo method search by contact name #3
             // todo method to delete existing contact #4
             // todo method exit application #5
