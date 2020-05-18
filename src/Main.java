@@ -5,7 +5,6 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,21 +12,32 @@ public class Main {
         String directory = "data";
         String filename = "contacts.txt";
 
-        ArrayList<String> contactNameList = new ArrayList<>();
-        Path filepath = Paths.get("data", "contacts.txt");
-        try {
-            System.out.println("Contacts Written!");
-            Files.write(filepath, contactNameList);
+        Contact[] newContacts = new Contact[4];
+        newContacts [0] = new Contact("Sung","Lee","555555555");
+        newContacts [1] = new Contact("DeLayne","LaBove","555555556");
+        newContacts [2] = new Contact("Jeniffer","Lee","555555557");
+        newContacts [3] = new Contact("Jacques","Boutte","555555558");
 
-        } catch (Exception e) {
-            System.out.println("Learn more and try again!");
+        for (int i = 0; i < newContacts.length; i++) {
+            System.out.printf("Name       |  Phone number |\n"+
+                              "-----------|-----------|\n"+
+                              "%s   %s    | %s            |\n",
+                    newContacts[i].firstName, newContacts[i].lastName,newContacts[i].phoneNumber) ;
         }
+//        System.out.println("Contact name: " + newContacts[i].firstName + " " + newContacts[i].lastName + " | " +"Phone Number: " + newContacts[i].phoneNumber);
 
-        Contacts[] newContacts = new Contacts[4];
-        newContacts [0] = new Contacts ("Sung","Lee","555555555");
-        newContacts [1] = new Contacts ("DeLayne","LaBove","555555556");
-        newContacts [2] = new Contacts ("Jeniffer","Lee","555555557");
-        newContacts [3] = new Contacts ("Jacques","Boutte","555555558");
+
+//        try{
+//            Files.write(
+//                    Paths.get(directory,filename),
+//                    Arrays.asList("test"),
+//                    StandardOpenOption.APPEND
+//            );
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+
+
 
 
 
@@ -74,13 +84,19 @@ Enter an option (1, 2, 3, 4 or 5):
 
     // Build contacts list
     // todo method call APPLICATION
+        runApplication();
+
     // todo method shows the user main menu and returns their choice of action
         // todo method that performs above action (modifying contents of the List of Contact objects)
-    // todo method that returns a List of Contact objects in a table format.
-    // todo method add contact -display name and phone number in a table
-    // todo method search by contact name
-    // todo method to delete existing contact
-    // todo method exit application
+
+    //todo do-while loop
+    //todo if(userInput==#) continue/break;
+            // todo method that returns a List of Contact objects in a table format #1
+            // todo method add contact -display name and phone number in a table #2
+            // todo method search by contact name #3
+            // todo method to delete existing contact #4
+            // todo method exit application #5
+
     // todo rewrite contents of contacts.txt using List of Contact Objects
 
 

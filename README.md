@@ -1,1 +1,1 @@
-# Contacts-Manager-CLI
+# Contact-Manager-CLI
