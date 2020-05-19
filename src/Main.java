@@ -10,15 +10,6 @@ import java.util.Scanner;
 
 public class Main {
 
-//
-//    public static Contact[] newContacts;
-////    public static Contact[] newContacts{
-//        Contact[] newContacts = new Contact[4];
-//        newContacts [0] = new Contact("Sung","Lee","555555555");
-//        newContacts [1] = new Contact("DeLayne","LaBove","555555556");
-//        newContacts [2] = new Contact("Jeniffer","Lee","555555557");
-//        newContacts [3] = new Contact("Jacques","Boutte","555555558");
-//    }
 
     public static void main(String[] args) {
 
@@ -66,13 +57,9 @@ public class Main {
 //        getContactList(dataFile,true);
 
         readFile(dataFile,true);
-//        addNewContact(sc);
+        addNewContact(sc);
         fileContains(sc,dataFile);
        
-
-
-
-
 
 }
 
@@ -109,53 +96,7 @@ public class Main {
     }
 
 
-
-
-//
-//    public static List<String> readFile(Path aFile, boolean print){
-//        List<String> lines;
-//        try{
-//            lines = Files.readAllLines(aFile);
-//            if(print == true){
-//                for (String line: lines) {
-//                    System.out.println("lines = " + line);
-//                }
-//                return null;
-//            }
-//            return lines;
-//        } catch (IOException e){
-//            System.out.println("Problems reading the file");
-//            e.printStackTrace();
-//            return null;
-//        }
-//    }
     // todo View contacts Load all of the contacts by calling a method that returns a List of Contact objects.
-
-
-//                System.out.println("Name | Phone number \n" +
-//                    "---------------");
-//                for (int i = 0; i < newContacts.length; i++) {
-//                    contactList.add(String.format("%s   %s | %s  \n",newContacts[i].firstName, newContacts[i].lastName,newContacts[i].phoneNumber));
-//                }
-
-
-//        System.out.println("Do you want to see the contact list?");
-//        String userInput = sc.nextLine();
-//        if (userInput.equals("y")) {
-//            System.out.println("It worked.");
-//
-////            System.out.println("Name | Phone number \n" +
-////                    "---------------");
-////
-////            for (int i = 0; i < newContacts.length; i++) {
-////                contactList.add(String.format("%s   %s | %s  \n",newContacts[i].firstName, newContacts[i].lastName,newContacts[i].phoneNumber));
-////            }
-//        } else {
-//            System.out.println("Good bye");
-////
-////        }
-////        return contactList;
-//        }
 
 
     public static void addNewContact(Scanner sc) {
