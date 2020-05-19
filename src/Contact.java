@@ -9,5 +9,12 @@ public class Contact {
         this.lastName = ln;
         this.phoneNumber = pn;
     }
+    public String getName(){
+        return this.firstName;
+    }
+//
+//    public String getLastName(){
+//        return this.lastName;
+//    }
 
 }

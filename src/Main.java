@@ -20,6 +20,9 @@ public class Main {
         String filename = "contacts.txt";
         List<String> contactList = new ArrayList<>();
 
+//        Contact newPerson = new Contact("Tandy", "Mitchell", "5555555555");
+
+
         Contact[] newContacts = new Contact[4];
         newContacts[0] = new Contact("Sung", "Lee", "555555555");
         newContacts[1] = new Contact("DeLayne", "LaBove", "555555556");
@@ -56,17 +59,17 @@ public class Main {
         createAndCheckFile(dataFile);
 //        getContactList(dataFile,true);
 
-        readFile(dataFile,true);
+        readFile(dataFile, true);
         addNewContact(sc);
-        fileContains(sc,dataFile);
-       
 
-}
 
-//      CREATED DATA DIRECTORY
+
+    }
+
+    //      CREATED DATA DIRECTORY
     private static void createDir(Path dataDirectory) {
 
-        if(Files.notExists(dataDirectory)) {
+        if (Files.notExists(dataDirectory)) {
             try {
                 Files.createDirectory(dataDirectory);
                 System.out.println("If succeed!");
@@ -83,7 +86,7 @@ public class Main {
     private static void createAndCheckFile(Path dataFile) {
 
 
-        if(Files.notExists(dataFile)) {
+        if (Files.notExists(dataFile)) {
             try {
                 Files.createFile(dataFile);
                 System.out.println("This will create both Directory: data, and contacts inside of Directory \"in theory\".");
@@ -113,45 +116,68 @@ public class Main {
             e.printStackTrace();
         }
     }
-    public static List<String> readFile(Path aFile, boolean print){
+
+    //      PRINT CONTACT LIST
+    public static List<String> readFile(Path aFile, boolean print) {
         List<String> lines;
-        try{
+        try {
             lines = Files.readAllLines(aFile);
-            if(print == true){
+            if (print == true) {
                 System.out.println("Name | Phone number \n" +
                         "---------------");
-                for (String line: lines) {
+                for (String line : lines) {
                     System.out.println(line);
                 }
                 return null;
             }
             return lines;
-        } catch (IOException e){
+        } catch (IOException e) {
             System.out.println("Problems reading the file");
             e.printStackTrace();
             return null;
         }
     }
 
-    // todo method search by contact name #3
-    public static String fileContains(Scanner sc, Path aFile) {
-        System.out.println("Who do you want to find?");
-        String userInput = sc.nextLine();
-        List<String> lines = readFile(aFile, false);
-        for (String line : lines) {
-            if(line.equalsIgnoreCase(userInput)){
-                System.out.println("userInput = " + userInput);
-            } else {
-                System.out.println("Plz try again");
-            }
-        }
-        System.out.println(userInput);
-        return userInput;
-    }
 
+    //          SEARCH LIST
+
+    // todo method search by contact name #3
+
+
+//
+//    private static boolean fileContains(Scanner sc, Path aFile) {
+//        String userSearch = sc.nextLine();
+//        List<String> lines = readFile(aFile, false);
+//        for (String line : lines) {
+//            if(line.equals(userSearch)){
+//                System.out.println("Worked!!");
+//                return true;
+//            }
+//        }
+//        System.out.println("WHOOOOOOMP");
+//        return false;
+//    }
+
+
+//    public static void fileContains(Scanner sc, Path aFile) {
+//        System.out.println("Who do you want to find?");
+//        String userInput = sc.nextLine();
+//        System.out.println("userInput = " + userInput);
+//        List<String> lines = readFile(aFile, false);
+//        System.out.println("lines = " + lines);
+//        for (String line : lines) {
+//            System.out.println("TEST");
+//            if(line.equals(userInput)){
+//                System.out.println("userInput = " + userInput);
+//            } else {
+//                System.out.println("Plz try again");
+//            }
+//        }
+//        System.out.println(userInput);
+//        return userInput + "DID NOT WORK";
+//    }
 
 }
-
 
 
 
