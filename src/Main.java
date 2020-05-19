@@ -11,15 +11,6 @@ import java.util.Scanner;
 public class Main {
 
 
-    public static Contact[] newContacts;
-//    public static Contact[] newContacts{
-//        Contact[] newContacts = new Contact[4];
-//        newContacts [0] = new Contact("Sung","Lee","555555555");
-//        newContacts [1] = new Contact("DeLayne","LaBove","555555556");
-//        newContacts [2] = new Contact("Jeniffer","Lee","555555557");
-//        newContacts [3] = new Contact("Jacques","Boutte","555555558");
-//    }
-
     public static void main(String[] args) {
 
 
@@ -28,6 +19,9 @@ public class Main {
         String directory = "data";
         String filename = "contacts.txt";
         List<String> contactList = new ArrayList<>();
+
+//        Contact newPerson = new Contact("Tandy", "Mitchell", "5555555555");
+
 
         Contact[] newContacts = new Contact[4];
         newContacts[0] = new Contact("Sung", "Lee", "555555555");
@@ -65,21 +59,17 @@ public class Main {
         createAndCheckFile(dataFile);
 //        getContactList(dataFile,true);
 
-        readFile(dataFile,true);
-//        addNewContact(sc);
-        fileContains(sc,dataFile);
-       
+        readFile(dataFile, true);
+        addNewContact(sc);
 
 
 
+    }
 
-
-}
-
-//      CREATED DATA DIRECTORY
+    //      CREATED DATA DIRECTORY
     private static void createDir(Path dataDirectory) {
 
-        if(Files.notExists(dataDirectory)) {
+        if (Files.notExists(dataDirectory)) {
             try {
                 Files.createDirectory(dataDirectory);
                 System.out.println("If succeed!");
@@ -96,7 +86,7 @@ public class Main {
     private static void createAndCheckFile(Path dataFile) {
 
 
-        if(Files.notExists(dataFile)) {
+        if (Files.notExists(dataFile)) {
             try {
                 Files.createFile(dataFile);
                 System.out.println("This will create both Directory: data, and contacts inside of Directory \"in theory\".");
@@ -109,53 +99,7 @@ public class Main {
     }
 
 
-
-
-//
-//    public static List<String> readFile(Path aFile, boolean print){
-//        List<String> lines;
-//        try{
-//            lines = Files.readAllLines(aFile);
-//            if(print == true){
-//                for (String line: lines) {
-//                    System.out.println("lines = " + line);
-//                }
-//                return null;
-//            }
-//            return lines;
-//        } catch (IOException e){
-//            System.out.println("Problems reading the file");
-//            e.printStackTrace();
-//            return null;
-//        }
-//    }
     // todo View contacts Load all of the contacts by calling a method that returns a List of Contact objects.
-
-
-//                System.out.println("Name | Phone number \n" +
-//                    "---------------");
-//                for (int i = 0; i < newContacts.length; i++) {
-//                    contactList.add(String.format("%s   %s | %s  \n",newContacts[i].firstName, newContacts[i].lastName,newContacts[i].phoneNumber));
-//                }
-
-
-//        System.out.println("Do you want to see the contact list?");
-//        String userInput = sc.nextLine();
-//        if (userInput.equals("y")) {
-//            System.out.println("It worked.");
-//
-////            System.out.println("Name | Phone number \n" +
-////                    "---------------");
-////
-////            for (int i = 0; i < newContacts.length; i++) {
-////                contactList.add(String.format("%s   %s | %s  \n",newContacts[i].firstName, newContacts[i].lastName,newContacts[i].phoneNumber));
-////            }
-//        } else {
-//            System.out.println("Good bye");
-////
-////        }
-////        return contactList;
-//        }
 
 
     public static void addNewContact(Scanner sc) {
@@ -172,45 +116,68 @@ public class Main {
             e.printStackTrace();
         }
     }
-    public static List<String> readFile(Path aFile, boolean print){
+
+    //      PRINT CONTACT LIST
+    public static List<String> readFile(Path aFile, boolean print) {
         List<String> lines;
-        try{
+        try {
             lines = Files.readAllLines(aFile);
-            if(print == true){
+            if (print == true) {
                 System.out.println("Name | Phone number \n" +
                         "---------------");
-                for (String line: lines) {
+                for (String line : lines) {
                     System.out.println(line);
                 }
                 return null;
             }
             return lines;
-        } catch (IOException e){
+        } catch (IOException e) {
             System.out.println("Problems reading the file");
             e.printStackTrace();
             return null;
         }
     }
 
-    // todo method search by contact name #3
-    public static String fileContains(Scanner sc, Path aFile) {
-        System.out.println("Who do you want to find?");
-        String userInput = sc.nextLine();
-        List<String> lines = readFile(aFile, false);
-        for (String line : lines) {
-            if(line.equalsIgnoreCase(userInput)){
-                System.out.println("userInput = " + userInput);
-            } else {
-                System.out.println("Plz try again");
-            }
-        }
-        System.out.println(userInput);
-        return userInput;
-    }
 
+    //          SEARCH LIST
+
+    // todo method search by contact name #3
+
+
+//
+//    private static boolean fileContains(Scanner sc, Path aFile) {
+//        String userSearch = sc.nextLine();
+//        List<String> lines = readFile(aFile, false);
+//        for (String line : lines) {
+//            if(line.equals(userSearch)){
+//                System.out.println("Worked!!");
+//                return true;
+//            }
+//        }
+//        System.out.println("WHOOOOOOMP");
+//        return false;
+//    }
+
+
+//    public static void fileContains(Scanner sc, Path aFile) {
+//        System.out.println("Who do you want to find?");
+//        String userInput = sc.nextLine();
+//        System.out.println("userInput = " + userInput);
+//        List<String> lines = readFile(aFile, false);
+//        System.out.println("lines = " + lines);
+//        for (String line : lines) {
+//            System.out.println("TEST");
+//            if(line.equals(userInput)){
+//                System.out.println("userInput = " + userInput);
+//            } else {
+//                System.out.println("Plz try again");
+//            }
+//        }
+//        System.out.println(userInput);
+//        return userInput + "DID NOT WORK";
+//    }
 
 }
-
 
 
 
