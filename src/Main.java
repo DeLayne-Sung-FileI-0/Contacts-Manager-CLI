@@ -9,26 +9,31 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+
+    public static Contact[] newContacts;
+
+
     public static void main(String[] args) {
+
+
         Scanner sc = new Scanner (System.in);
 
         String directory = "data";
         String filename = "contacts.txt";
+        List<String> contactList = new ArrayList<>();
 
         Contact[] newContacts = new Contact[4];
-        getContactList(sc,newContacts);
         newContacts [0] = new Contact("Sung","Lee","555555555");
         newContacts [1] = new Contact("DeLayne","LaBove","555555556");
         newContacts [2] = new Contact("Jeniffer","Lee","555555557");
         newContacts [3] = new Contact("Jacques","Boutte","555555558");
-
         System.out.println(Arrays.toString(newContacts));
         System.out.println(Arrays.toString(newContacts));
 
 
         System.out.println("Name | Phone number \n" +
                 "---------------");
-        List<String> contactList = new ArrayList<>();
+
         for (int i = 0; i < newContacts.length; i++) {
 
          contactList.add(String.format("%s   %s | %s  \n",newContacts[i].firstName, newContacts[i].lastName,newContacts[i].phoneNumber));
@@ -55,6 +60,8 @@ public class Main {
 //      CREATE DIRECTORY AND FILE
         createDir(dataDirectory);
         createAndCheckFile(dataFile);
+
+        getContactList(dataFile, true);
 
     }
 
@@ -94,42 +101,66 @@ public class Main {
 
 
 
-//        public static List<String> addNewContact(Path aFile, String newContact){
-//            List<String> newPerson = new ArrayList<>();
 //
-//            try {
-//                List<String> lines = Files.readAllLines(aFile);
-//                for (String line : lines) {
-//                    if(line.equals(find)){
-//                        newPerson.add(newContact);
-//                        continue;
-//                    }
-//                    newPerson.add(line);
+//    public static List<String> readFile(Path aFile, boolean print){
+//        List<String> lines;
+//        try{
+//            lines = Files.readAllLines(aFile);
+//            if(print == true){
+//                for (String line: lines) {
+//                    System.out.println("lines = " + line);
 //                }
-//    //            Files.write(aFile, newContact, StandardOpenOption.APPEND); // Will add person to contact without removing.
-//            } catch (IOException e){
-//                System.out.println("Problems writing in the file");
-//                e.printStackTrace();
+//                return null;
 //            }
+//            return lines;
+//        } catch (IOException e){
+//            System.out.println("Problems reading the file");
+//            e.printStackTrace();
+//            return null;
 //        }
-    public static List<String> getContactList(Scanner sc, Contact[] newContacts) {
+//    }
+    public static List<String> getContactList(Path aFile, boolean print) {
 
-        String userInput = sc.nextLine();
-        List<String> contactList = new ArrayList<>();
-        System.out.println("Do you want to see the contact list?");
-        if (userInput == "1"){
-            System.out.println("Name | Phone number \n" +
+
+        List<String> contactList;
+        try{
+            contactList = Files.readAllLines(aFile);
+            if(print == true){
+                System.out.println("Name | Phone number \n" +
                     "---------------");
-
-            for (int i = 0; i < newContacts.length; i++) {
-                contactList.add(String.format("%s   %s | %s  \n",newContacts[i].firstName, newContacts[i].lastName,newContacts[i].phoneNumber));
+                for (Contact newContact : newContacts) {
+                    System.out.printf("%s   %s | %s  \n", newContact.firstName, newContact.lastName, newContact.phoneNumber);
+                }
+                return null;
             }
-        } else{
-            System.out.println("Good bye");
+            return contactList;
+        } catch (IOException e){
+            System.out.println("Problems reading the file");
+            e.printStackTrace();
+            return null;
+        }
 
-        } return contactList;
 
+
+//        System.out.println("Do you want to see the contact list?");
+//        String userInput = sc.nextLine();
+//        if (userInput.equals("y")) {
+//            System.out.println("It worked.");
+//
+////            System.out.println("Name | Phone number \n" +
+////                    "---------------");
+////
+////            for (int i = 0; i < newContacts.length; i++) {
+////                contactList.add(String.format("%s   %s | %s  \n",newContacts[i].firstName, newContacts[i].lastName,newContacts[i].phoneNumber));
+////            }
+//        } else {
+//            System.out.println("Good bye");
+////
+////        }
+////        return contactList;
+//        }
     }
+
     public static void addNewContact(Scanner sc) {
         try {
             System.out.println("Add new contact");
