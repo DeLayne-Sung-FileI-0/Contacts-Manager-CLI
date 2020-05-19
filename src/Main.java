@@ -10,49 +10,52 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static Contact[] newContacts;
 
+    public static Contact[] newContacts;
+//    public static Contact[] newContacts{
+//        Contact[] newContacts = new Contact[4];
+//        newContacts [0] = new Contact("Sung","Lee","555555555");
+//        newContacts [1] = new Contact("DeLayne","LaBove","555555556");
+//        newContacts [2] = new Contact("Jeniffer","Lee","555555557");
+//        newContacts [3] = new Contact("Jacques","Boutte","555555558");
+//    }
 
     public static void main(String[] args) {
 
 
-        Scanner sc = new Scanner (System.in);
+        Scanner sc = new Scanner(System.in);
 
         String directory = "data";
         String filename = "contacts.txt";
         List<String> contactList = new ArrayList<>();
 
         Contact[] newContacts = new Contact[4];
-        newContacts [0] = new Contact("Sung","Lee","555555555");
-        newContacts [1] = new Contact("DeLayne","LaBove","555555556");
-        newContacts [2] = new Contact("Jeniffer","Lee","555555557");
-        newContacts [3] = new Contact("Jacques","Boutte","555555558");
+        newContacts[0] = new Contact("Sung", "Lee", "555555555");
+        newContacts[1] = new Contact("DeLayne", "LaBove", "555555556");
+        newContacts[2] = new Contact("Jeniffer", "Lee", "555555557");
+        newContacts[3] = new Contact("Jacques", "Boutte", "555555558");
         System.out.println(Arrays.toString(newContacts));
         System.out.println(Arrays.toString(newContacts));
 
 
         System.out.println("Name | Phone number \n" +
-                "---------------");
+                "------------------");
 
         for (int i = 0; i < newContacts.length; i++) {
 
-         contactList.add(String.format("%s   %s | %s  \n",newContacts[i].firstName, newContacts[i].lastName,newContacts[i].phoneNumber));
+            contactList.add(String.format("%s   %s | %s ", newContacts[i].firstName, newContacts[i].lastName, newContacts[i].phoneNumber));
 
         }
 
-        try{
+        try {
             Files.write(
-                    Paths.get(directory,filename),
+                    Paths.get(directory, filename),
                     contactList,
                     StandardOpenOption.APPEND
             );
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        addNewContact(sc);
-
-
 //      WHERE FOLDER WILL LIVE
         Path dataDirectory = Paths.get(directory);
 //      WHERE FILE WILL LIVE
@@ -60,11 +63,18 @@ public class Main {
 //      CREATE DIRECTORY AND FILE
         createDir(dataDirectory);
         createAndCheckFile(dataFile);
+//        getContactList(dataFile,true);
 
-        getContactList(dataFile, true);
+        readFile(dataFile,true);
+//        addNewContact(sc);
+        fileContains(sc,dataFile);
+       
 
-    }
 
+
+
+
+}
 
 //      CREATED DATA DIRECTORY
     private static void createDir(Path dataDirectory) {
@@ -119,27 +129,14 @@ public class Main {
 //            return null;
 //        }
 //    }
-    public static List<String> getContactList(Path aFile, boolean print) {
+    // todo View contacts Load all of the contacts by calling a method that returns a List of Contact objects.
 
 
-        List<String> contactList;
-        try{
-            contactList = Files.readAllLines(aFile);
-            if(print == true){
-                System.out.println("Name | Phone number \n" +
-                    "---------------");
-                for (Contact newContact : newContacts) {
-                    System.out.printf("%s   %s | %s  \n", newContact.firstName, newContact.lastName, newContact.phoneNumber);
-                }
-                return null;
-            }
-            return contactList;
-        } catch (IOException e){
-            System.out.println("Problems reading the file");
-            e.printStackTrace();
-            return null;
-        }
-
+//                System.out.println("Name | Phone number \n" +
+//                    "---------------");
+//                for (int i = 0; i < newContacts.length; i++) {
+//                    contactList.add(String.format("%s   %s | %s  \n",newContacts[i].firstName, newContacts[i].lastName,newContacts[i].phoneNumber));
+//                }
 
 
 //        System.out.println("Do you want to see the contact list?");
@@ -159,7 +156,7 @@ public class Main {
 ////        }
 ////        return contactList;
 //        }
-    }
+
 
     public static void addNewContact(Scanner sc) {
         try {
@@ -168,13 +165,49 @@ public class Main {
             System.out.println("userInput = " + userInput);
             Files.write(
                     Paths.get("data", "contacts.txt"),
-                    Arrays.asList(userInput), // list with one item 
+                    Arrays.asList(userInput),
                     StandardOpenOption.APPEND
             );
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+    public static List<String> readFile(Path aFile, boolean print){
+        List<String> lines;
+        try{
+            lines = Files.readAllLines(aFile);
+            if(print == true){
+                System.out.println("Name | Phone number \n" +
+                        "---------------");
+                for (String line: lines) {
+                    System.out.println(line);
+                }
+                return null;
+            }
+            return lines;
+        } catch (IOException e){
+            System.out.println("Problems reading the file");
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    // todo method search by contact name #3
+    public static String fileContains(Scanner sc, Path aFile) {
+        System.out.println("Who do you want to find?");
+        String userInput = sc.nextLine();
+        List<String> lines = readFile(aFile, false);
+        for (String line : lines) {
+            if(line.equalsIgnoreCase(userInput)){
+                System.out.println("userInput = " + userInput);
+            } else {
+                System.out.println("Plz try again");
+            }
+        }
+        System.out.println(userInput);
+        return userInput;
+    }
+
 
 }
 
@@ -201,8 +234,9 @@ Enter an option (1, 2, 3, 4 or 5):
         // todo method that performs above action (modifying contents of the List of Contact objects)
 
     //todo do-while loop
-    //todo if(userInput==#) continue/break;
-            // todo method that returns a List of Contact objects in a table format #1
+    // todo if(userInput==#) continue/break;
+
+            // method that returns a List of Contact objects in a table format #1
             // method add contact -display name and phone number in a table #2
             // todo method search by contact name #3
             // todo method to delete existing contact #4
