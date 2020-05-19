@@ -9,20 +9,13 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-
-
     public static void main(String[] args) {
-
-
         Scanner sc = new Scanner(System.in);
-
         String directory = "data";
         String filename = "contacts.txt";
         List<String> contactList = new ArrayList<>();
 
 //        Contact newPerson = new Contact("Tandy", "Mitchell", "5555555555");
-
-
         Contact[] newContacts = new Contact[4];
         newContacts[0] = new Contact("Sung", "Lee", "555555555");
         newContacts[1] = new Contact("DeLayne", "LaBove", "555555556");
