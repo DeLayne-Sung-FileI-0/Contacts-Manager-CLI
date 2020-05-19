@@ -10,9 +10,9 @@ import java.util.Scanner;
 
 public class Main {
 
-
-    public static Contact[] newContacts;
-//    public static Contact[] newContacts{
+//
+//    public static Contact[] newContacts;
+////    public static Contact[] newContacts{
 //        Contact[] newContacts = new Contact[4];
 //        newContacts [0] = new Contact("Sung","Lee","555555555");
 //        newContacts [1] = new Contact("DeLayne","LaBove","555555556");
