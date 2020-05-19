@@ -54,7 +54,7 @@ public class Main {
 
         readFile(dataFile, true);
         addNewContact(sc);
-
+        fileContains(dataFile);
 
 
     }
@@ -135,6 +135,21 @@ public class Main {
     //          SEARCH LIST
 
     // todo method search by contact name #3
+    public static List<String> fileContains(Path aFile) {
+        System.out.println("Do you want to search by contact name?");
+        Scanner sc = new Scanner(System.in);
+        String userInput = sc.nextLine();
+        // lists of lines in the files === userInput
+        List<String> lines = readFile(aFile, false);
+        System.out.println(lines.size());
+        for (int i = 0; i < lines.size(); i++) {
+            if(lines.equals(userInput)){
+                return lines;
+            }
+        }
+        return null;
+    }
+
 
 
 //
@@ -150,7 +165,6 @@ public class Main {
 //        System.out.println("WHOOOOOOMP");
 //        return false;
 //    }
-
 
 //    public static void fileContains(Scanner sc, Path aFile) {
 //        System.out.println("Who do you want to find?");
