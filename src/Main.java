@@ -54,7 +54,8 @@ public class Main {
 
         readFile(dataFile, true);
         addNewContact(sc);
-        fileContains(dataFile);
+        fileContains(sc, dataFile);
+//        fileContains(dataFile);
 
 
     }
@@ -135,20 +136,29 @@ public class Main {
     //          SEARCH LIST
 
     // todo method search by contact name #3
-    public static List<String> fileContains(Path aFile) {
-        System.out.println("Do you want to search by contact name?");
-        Scanner sc = new Scanner(System.in);
+    public static List<String> fileContains(Scanner sc,  Path aFile) {
+        System.out.println("Who do you want to find?");
         String userInput = sc.nextLine();
-        // lists of lines in the files === userInput
         List<String> lines = readFile(aFile, false);
-        System.out.println(lines.size());
-        for (int i = 0; i < lines.size(); i++) {
-            if(lines.equals(userInput)){
+        for (String line : lines) {
+            if (line.equals(userInput)) {
                 return lines;
             }
+//        return false;
         }
         return null;
     }
+
+    // todo method to delete existing contact #4
+    public static void deleteExistingContact(String contact) {
+        // I feel like if we can figure out the "fileContains" method,
+        // we can use that method grab that contact and .remove()
+        // return updatedContactLists
+
+        // todo figure out fileContains (for:each) , and make updated-contactLists
+    }
+
+
 
 
 
