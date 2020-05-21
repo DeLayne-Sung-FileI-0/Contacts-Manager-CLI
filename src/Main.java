@@ -43,6 +43,8 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
 //      WHERE FOLDER WILL LIVE
         Path dataDirectory = Paths.get(directory);
 //      WHERE FILE WILL LIVE
@@ -175,8 +177,8 @@ public class Main {
 //        System.out.println("WHOOOOOOMP");
 //        return false;
 //    }
-
-//    public static void fileContains(Scanner sc, Path aFile) {
+//
+//    public static String fileContains(Scanner sc, Path aFile) {
 //        System.out.println("Who do you want to find?");
 //        String userInput = sc.nextLine();
 //        System.out.println("userInput = " + userInput);
