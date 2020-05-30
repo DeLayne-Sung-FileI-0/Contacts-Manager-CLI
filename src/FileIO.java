@@ -32,6 +32,8 @@ public class FileIO {
         }
     }
 
+//    this function handles getting the data converted over into how to write it into a file
+
     static void writeContactToFile(Contact contact) {
         String contactLine = String.format("%s %s | %s", contact.getFirstName(), contact.getLastName(), contact.getPhoneNumber());
         System.out.println("contactLine = " + contactLine);
