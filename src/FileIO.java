@@ -51,18 +51,18 @@ public class FileIO {
     }
 
     // todo readFile method will print the contact list in the console
-    static void readFile() {
-        System.out.println("Name | Phone number\n" +
-                "--------------------");
-        try {
-            List<String> lines =  Files.readAllLines(redoDatafile);
-            for (String line : lines) {
-                System.out.println(line);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    static void readFile() {
+//        System.out.println("Name | Phone number\n" +
+//                "--------------------");
+//        try {
+//            List<String> lines =  Files.readAllLines(redoDatafile);
+//            for (String line : lines) {
+//                System.out.println(line);
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     // todo searchContact
     static void search(String term) {

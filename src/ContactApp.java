@@ -38,7 +38,7 @@ public class ContactApp {
             int option = input.getInt(1,5);
             switch (option) {
                 case 1:
-                    FileIO.readFile();
+//                    FileIO.readFile();
                     break;
                 case 2:
                     String firstName = input.getString("Give me the First Name");
